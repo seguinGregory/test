@@ -2,25 +2,43 @@
 
 namespace App\Controller;
 
+use App\DataProvider\OrderDao;
+use App\DataProvider\PromotionDao;
 use App\Entity\Product;
 use App\Entity\Promotion;
+use App\Exception\PromotionValidationRuleException;
+use App\Service\Price\Calculator;
+use App\Validator\PromotionRulesValidator;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class MainController
+class MainController extends AbstractController
 {
-    public function index(): Response
+    public function index(
+        OrderDao $orderDao,
+        PromotionDao $promotionDao,
+        PromotionRulesValidator $promotionRulesValidator,
+        Calculator $priceCalculator,
+        \App\Service\ShippingFee\Calculator $shippingFeeCalculator
+    ): Response
     {
-        $product1 = new Product('Cuve à gasoil', 250000, 'Farmitoo');
-        $product2 = new Product('Nettoyant pour cuve', 5000, 'Farmitoo');
-        $product3 = new Product('Piquet de clôture', 1000, 'Gallagher');
+        $order = $orderDao->getCurrentOrder();
 
-        $promotion1 = new Promotion(50000, 8, false);
+        // Simulation : l'utilisateur entre un code promo
+        $promotion = $promotionDao->getPromotionByName();
+        $order->setPromotion($promotion);
 
-        // Je passe une commande avec
-        // Cuve à gasoil x1
-        // Nettoyant pour cuve x3
-        // Piquet de clôture x5
+        // Validation de la promotion
+        $promotionValidatorError = null;
+        try {
+            $promotionRulesValidator->validatePromotion($order);
+        } catch(PromotionValidationRuleException $e) {
+            $promotionValidatorError = $e->getMessage();
+        }
 
-        return new Response();
+
+        return $this->render('cart/details.html.twig', [
+            'order' => $order,
+        ]);
     }
 }

@@ -3,11 +3,98 @@
 
 namespace App\Entity;
 
-
 class Order
 {
-    /**
-     * @var array
-     */
+    /** @var Item[] */
     protected $items;
+
+    /** @var \DateTime */
+    protected $submissionDate;
+
+    /** @var Promotion|null */
+    protected $promotion;
+
+    /**
+     * @param Item[] $items
+     * @param \DateTime $submissionDate
+     */
+    public function __construct(array $items, \DateTime $submissionDate)
+    {
+        $this->items = $items;
+        $this->submissionDate = $submissionDate;
+    }
+
+    /**
+     * @return Item[]
+     */
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param Item[] $items
+     * @return Order
+     */
+    public function setItems(array $items): Order
+    {
+        $this->items = $items;
+        return $this;
+    }
+
+    /**
+     * @param Item $item
+     * @return $this
+     */
+    public function addItem(Item $item): Order {
+        $this->items[] = $item;
+        return $this;
+    }
+
+    /**
+     * @param Item $item
+     * @return $this
+     */
+    public function removeItem(Item $item): Order {
+        if($index = array_search($item, $this->items) !== false) {
+            array_splice($this->items, $index, 1);
+        }
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getSubmissionDate(): \DateTime
+    {
+        return $this->submissionDate;
+    }
+
+    /**
+     * @param \DateTime $submissionDate
+     * @return Order
+     */
+    public function setSubmissionDate(\DateTime $submissionDate): Order
+    {
+        $this->submissionDate = $submissionDate;
+        return $this;
+    }
+
+    /**
+     * @return Promotion|null
+     */
+    public function getPromotion(): ?Promotion
+    {
+        return $this->promotion;
+    }
+
+    /**
+     * @param Promotion|null $promotion
+     * @return Order
+     */
+    public function setPromotion(?Promotion $promotion): Order
+    {
+        $this->promotion = $promotion;
+        return $this;
+    }
 }
