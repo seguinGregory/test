@@ -3,6 +3,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Product;
+
 class Item
 {
     /** @var Product */

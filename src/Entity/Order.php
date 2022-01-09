@@ -3,6 +3,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Item;
+use App\Entity\Promotion;
+
 class Order
 {
     /** @var Item[] */

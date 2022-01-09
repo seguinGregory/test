@@ -15,8 +15,7 @@ J'ai tenté de montrer ma vision des choses, il y a des petits plus qui peuvent 
 `npm run build`
 
 ### Conception
-
-
+![uml.png](uml.png)
 
 ## Le cas
 
