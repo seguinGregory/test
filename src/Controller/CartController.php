@@ -25,6 +25,7 @@ class CartController extends AbstractController
     ): Response
     {
         $order = $orderDao->getCurrentOrder();
+        //$order = $orderDao->getOtherOrder();
 
         // Simulation : l'utilisateur entre un code promo
         $promotion = $promotionDao->getPromotionByName();
