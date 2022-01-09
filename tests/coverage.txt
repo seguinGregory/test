@@ -1,0 +1,46 @@
+
+
+Code Coverage Report:      
+  2022-01-09 16:46:48      
+                           
+ Summary:                  
+  Classes: 40.91% (9/22)   
+  Methods: 60.24% (50/83)  
+  Lines:   62.44% (138/221)
+
+App\Controller\CartController
+  Methods:  50.00% ( 1/ 2)   Lines:  85.71% ( 12/ 14)
+App\Controller\ProductController
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\DataProvider\OrderDao
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% ( 17/ 17)
+App\DataProvider\PromotionDao
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\Entity\Brand
+  Methods:  57.14% ( 4/ 7)   Lines:  53.85% (  7/ 13)
+App\Entity\Item
+  Methods:  60.00% ( 3/ 5)   Lines:  55.56% (  5/  9)
+App\Entity\Order
+  Methods:  50.00% ( 5/10)   Lines:  52.38% ( 11/ 21)
+App\Entity\Product
+  Methods:  57.14% ( 4/ 7)   Lines:  53.85% (  7/ 13)
+App\Entity\Promotion
+  Methods:  46.15% ( 6/13)   Lines:  42.31% ( 11/ 26)
+App\Entity\Promotion\MinimumItemsQuantityValidationRule
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  6/  6)
+App\Entity\Promotion\ValidationRule
+  Methods:  50.00% ( 1/ 2)   Lines:  75.00% (  3/  4)
+App\Entity\ShippingFee\PackagedShippingFee
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  5/  5)
+App\Entity\ShippingFee\ShippingFee
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  3/  3)
+App\Entity\Vat\Vat
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  3/  3)
+App\Service\Price\Calculator
+  Methods: 100.00% ( 8/ 8)   Lines: 100.00% ( 18/ 18)
+App\Service\ShippingFee\Calculator
+  Methods:  75.00% ( 3/ 4)   Lines:  90.00% ( 18/ 20)
+App\Service\ShippingFee\Payload\ShippingFeeInfo
+  Methods:  60.00% ( 3/ 5)   Lines:  55.56% (  5/  9)
+App\Validator\PromotionRulesValidator
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  5/  5)
