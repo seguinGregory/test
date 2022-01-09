@@ -4,6 +4,9 @@ namespace App\Service\ShippingFee\Payload;
 
 use App\Entity\Brand;
 
+/**
+ * Payload pour que ce soit plus propre dans le calcul des frais de port. Etant donné que la règle s'applique sur une marque et qu'il y a potentiellement plusieurs Item avec la même marque
+ */
 class ShippingFeeInfo
 {
     /** @var Brand */

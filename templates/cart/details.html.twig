@@ -1,5 +1,92 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-    test
+    <div class="row">
+        {% for item in order.items %}
+            <div class="col-sm-1 col-md-3 col-lg-4 p-2">
+                <div class="card cart-item">
+                    <img src="{{ asset('build/thumbnail.jpg') }}" class="card-img-top" alt="{{ item.product.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ item.product.title }}
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {{ item.product.brand.name }}
+                        </h6>
+                        <p class="card-text">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Quantité</th>
+                                        <td>{{ item.quantity }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Prix unitaire</th>
+                                        <td>{{ item.product.price|format_currency('EUR') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sous-Total HT</th>
+                                        <td>{{ priceCalculator.getItemVatFreeTotalPrice(item)|format_currency('EUR') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">TVA</th>
+                                        <td>{{ item.product.brand.vat.vatRate }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Total TTC</th>
+                                        <td>{{ priceCalculator.getItemTotalPrice(item)|format_currency('EUR') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p>
+                        <a href="{{ path('product', {id: 1}) }}" class="btn btn-primary">Consulter</a>
+                        <a href="#" class="btn btn-danger">Retirer</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="offset-5 col-7 p-2">
+            <div class="card cart-resume">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Résumé
+                    </h5>
+                    <p class="card-text">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Sous-Total HT</th>
+                                    <td>{{ priceCalculator.vatFreeSubtotalPrice(order)|format_currency('EUR') }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Frais de port HT</th>
+                                    <td>{{ shippingFeeCalculator.shippingFeeTotalPrice(order)|format_currency('EUR') }}</td>
+                                </tr>
+                                {% if order.promotion != null %}
+                                    <tr>
+                                        <th scope="row">Promotion</th>
+                                        <td>
+                                            <span class="{{ promotionValidatorError != null ? 'text-danger text-strike' }}">{{ order.promotion.name }} -{{ order.promotion.reduction }}%</span>
+                                            {% if promotionValidatorError != null  %}<p class="text-danger">{{ promotionValidatorError }}</p>{% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                <tr>
+                                    <th scope="row">Total HT</th>
+                                    <td>{{ priceCalculator.vatFreeTotalPrice(order)|format_currency('EUR') }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Total TTC</th>
+                                    <td>{{ priceCalculator.totalPrice(order)|format_currency('EUR') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                    <a href="{{ path('payment') }}" class="btn btn-success float-end">Accèder au paiement</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

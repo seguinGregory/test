@@ -2,25 +2,24 @@
 
 namespace App\Entity\ShippingFee;
 
-class FixedShippingFee implements ShippingFeeInterface
+class ShippingFee implements ShippingFeeInterface
 {
     /** @var float */
-    protected $price;
+    protected $basePrice;
 
     /**
      * @param float $price
      */
     public function __construct(float $price)
     {
-        $this->price = $price;
+        $this->basePrice = $price;
     }
 
     /**
-     * @param int $itemQuantity
-     * @return float
+     * @inheritDoc
      */
     public function getShippingFeePrice(int $itemQuantity): float
     {
-        return $this->price;
+        return $this->basePrice;
     }
 }

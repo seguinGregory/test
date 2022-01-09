@@ -8,6 +8,7 @@ use App\Exception\PromotionValidationRuleException;
 interface ValidationRuleInterface
 {
     /**
+     * Permet de savoir si la règle est valide ou non
      * @param Order $order
      * @return void
      * @throws PromotionValidationRuleException

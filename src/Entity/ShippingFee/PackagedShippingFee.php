@@ -2,32 +2,28 @@
 
 namespace App\Entity\ShippingFee;
 
-class PackagedShippingFee implements ShippingFeeInterface
+class PackagedShippingFee extends ShippingFee implements ShippingFeeInterface
 {
     /** @var int */
     protected $packagedItemsQuantity;
 
-    /** @var float */
-    protected $packagedPrice;
-
     /**
+     * @param float $basePrice
      * @param int $packagedItemsQuantity
-     * @param float $packagedPrice
      */
-    public function __construct(int $packagedItemsQuantity, float $packagedPrice)
+    public function __construct(float $basePrice, int $packagedItemsQuantity)
     {
+        parent::__construct($basePrice);
         $this->packagedItemsQuantity = $packagedItemsQuantity;
-        $this->packagedPrice = $packagedPrice;
     }
 
     /**
-     * @param int $itemQuantity
-     * @return float
+     * @inheritDoc
      */
     public function getShippingFeePrice(int $itemQuantity): float
     {
         $packageQuantity = ceil($itemQuantity / $this->packagedItemsQuantity);
 
-        return $packageQuantity * $this->packagedPrice;
+        return $packageQuantity * $this->basePrice;
     }
 }

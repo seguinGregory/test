@@ -2,26 +2,26 @@
 
 namespace App\Entity;
 
-use App\Entity\ShippingFee\ShippingFeeInterface;
-use App\Entity\Vat\VatInterface;
+use App\Entity\ShippingFee\ShippingFee;
+use App\Entity\Vat\Vat;
 
 class Brand
 {
     /** @var string */
     protected $name;
 
-    /** @var ShippingFeeInterface */
+    /** @var ShippingFee */
     protected $shippingFee;
 
-    /** @var VatInterface */
+    /** @var Vat */
     protected $vat;
 
     /**
      * @param string $name
-     * @param ShippingFeeInterface $shippingFee
-     * @param VatInterface $vat
+     * @param ShippingFee $shippingFee
+     * @param Vat $vat
      */
-    public function __construct(string $name, ShippingFeeInterface $shippingFee, VatInterface $vat)
+    public function __construct(string $name, ShippingFee $shippingFee, Vat $vat)
     {
         $this->name = $name;
         $this->shippingFee = $shippingFee;
@@ -47,36 +47,36 @@ class Brand
     }
 
     /**
-     * @return ShippingFeeInterface
+     * @return ShippingFee
      */
-    public function getShippingFee(): ShippingFeeInterface
+    public function getShippingFee(): ShippingFee
     {
         return $this->shippingFee;
     }
 
     /**
-     * @param ShippingFeeInterface $shippingFee
+     * @param ShippingFee $shippingFee
      * @return Brand
      */
-    public function setShippingFee(ShippingFeeInterface $shippingFee): Brand
+    public function setShippingFee(ShippingFee $shippingFee): Brand
     {
         $this->shippingFee = $shippingFee;
         return $this;
     }
 
     /**
-     * @return VatInterface
+     * @return Vat
      */
-    public function getVat(): VatInterface
+    public function getVat(): Vat
     {
         return $this->vat;
     }
 
     /**
-     * @param VatInterface $vat
+     * @param Vat $vat
      * @return Brand
      */
-    public function setVat(VatInterface $vat): Brand
+    public function setVat(Vat $vat): Brand
     {
         $this->vat = $vat;
         return $this;

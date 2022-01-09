@@ -5,16 +5,19 @@ namespace App\Entity\Promotion;
 use App\Entity\Order;
 use App\Exception\PromotionValidationRuleException;
 
-class MinimumItemsQuantityValidationRule implements ValidationRuleInterface
+class MinimumItemsQuantityValidationRule extends ValidationRule implements ValidationRuleInterface
 {
     /** @var int */
     protected $minimumItemsQuantity;
 
     /**
+     * @param string $errorCode
+     * @param string $errorMessage
      * @param int $minimumItemsQuantity
      */
-    public function __construct(int $minimumItemsQuantity)
+    public function __construct(string $errorCode, string $errorMessage, int $minimumItemsQuantity)
     {
+        parent::__construct($errorCode, $errorMessage);
         $this->minimumItemsQuantity = $minimumItemsQuantity;
     }
 
@@ -23,8 +26,8 @@ class MinimumItemsQuantityValidationRule implements ValidationRuleInterface
      */
     public function isValid(Order $order)
     {
-        if(count($order->getItems()) < $this->minimumItemsQuantity) {
-            throw new PromotionValidationRuleException('Cette promotion ne s\'applique pas sur ce nombre d\'articles (nombre minimum : ' . $this->minimumItemsQuantity . ')');
+        if($order->getProductQuantity() < $this->minimumItemsQuantity) {
+            throw new PromotionValidationRuleException($this->errorMessage);
         }
     }
 }

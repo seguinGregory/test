@@ -4,8 +4,7 @@
 namespace App\Entity;
 
 
-use App\Entity\Promotion\ValidationRuleInterface;
-use App\Exception\PromotionValidationRuleException;
+use App\Entity\Promotion\ValidationRule;
 
 class Promotion
 {
@@ -21,7 +20,7 @@ class Promotion
     /** @var int */
     protected $remainingUses;
 
-    /** @var ValidationRuleInterface[] */
+    /** @var ValidationRule[] */
     protected $validationRules;
 
     /**
@@ -29,7 +28,7 @@ class Promotion
      * @param float $reduction
      * @param bool $freeDelivery
      * @param int $remainingUses
-     * @param ValidationRuleInterface[] $validationRules
+     * @param ValidationRule[] $validationRules
      */
     public function __construct(string $name, float $reduction, bool $freeDelivery, int $remainingUses, array $validationRules)
     {
@@ -113,7 +112,7 @@ class Promotion
     }
 
     /**
-     * @return ValidationRuleInterface[]
+     * @return ValidationRule[]
      */
     public function getValidationRules(): array
     {
@@ -121,7 +120,7 @@ class Promotion
     }
 
     /**
-     * @param ValidationRuleInterface[] $validationRules
+     * @param ValidationRule[] $validationRules
      * @return Promotion
      */
     public function setValidationRules(array $validationRules): Promotion
@@ -131,19 +130,19 @@ class Promotion
     }
 
     /**
-     * @param ValidationRuleInterface $validationRule
+     * @param ValidationRule $validationRule
      * @return Promotion
      */
-    public function addValidationRules(ValidationRuleInterface $validationRule): Promotion {
+    public function addValidationRule(ValidationRule $validationRule): Promotion {
         $this->validationRules[] = $validationRule;
         return $this;
     }
 
     /**
-     * @param ValidationRuleInterface $validationRule
+     * @param ValidationRule $validationRule
      * @return Promotion
      */
-    public function removeValidationRules(ValidationRuleInterface $validationRule): Promotion {
+    public function removeValidationRule(ValidationRule $validationRule): Promotion {
         if($index = array_search($validationRule, $this->validationRules) !== false) {
             array_splice($this->validationRules, $index, 1);
         }

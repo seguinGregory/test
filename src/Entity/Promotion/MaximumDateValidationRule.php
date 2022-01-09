@@ -6,16 +6,19 @@ use App\Entity\Order;
 use App\Exception\PromotionValidationRuleException;
 use Symfony\Component\Translation\TranslatableMessage;
 
-class MaximumDateValidationRule implements ValidationRuleInterface
+class MaximumDateValidationRule extends ValidationRule implements ValidationRuleInterface
 {
     /** @var \DateTime */
     protected $maximumDate;
 
     /**
+     * @param string $errorCode
+     * @param string $errorMessage
      * @param \DateTime $maximumDate
      */
-    public function __construct(\DateTime $maximumDate)
+    public function __construct(string $errorCode, string $errorMessage, \DateTime $maximumDate)
     {
+        parent::__construct($errorCode, $errorMessage);
         $this->maximumDate = $maximumDate;
     }
 
@@ -25,7 +28,7 @@ class MaximumDateValidationRule implements ValidationRuleInterface
     public function isValid(Order $order)
     {
         if($order->getSubmissionDate()->getTimestamp() > $this->maximumDate->getTimestamp()) {
-            throw new PromotionValidationRuleException('Cette promotion n\'est plus utilisable (utilisable jusqu\'au ' . $this->maximumDate->format('dd/mm/YY') . ')');
+            throw new PromotionValidationRuleException($this->errorMessage);
         }
     }
 }

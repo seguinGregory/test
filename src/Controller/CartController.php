@@ -4,16 +4,18 @@ namespace App\Controller;
 
 use App\DataProvider\OrderDao;
 use App\DataProvider\PromotionDao;
-use App\Entity\Product;
-use App\Entity\Promotion;
 use App\Exception\PromotionValidationRuleException;
 use App\Service\Price\Calculator;
 use App\Validator\PromotionRulesValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-class MainController extends AbstractController
+class CartController extends AbstractController
 {
+    /**
+     * @Route("/", name="index")
+     */
     public function index(
         OrderDao $orderDao,
         PromotionDao $promotionDao,
@@ -38,7 +40,18 @@ class MainController extends AbstractController
 
 
         return $this->render('cart/details.html.twig', [
+            'title' => 'Votre panier',
             'order' => $order,
+            'priceCalculator' => $priceCalculator,
+            'shippingFeeCalculator' => $shippingFeeCalculator,
+            'promotionValidatorError' => $promotionValidatorError
         ]);
+    }
+
+    /**
+     * @Route("/payment", name="payment")
+     */
+    public function payment() {
+        return new Response('Offert par la maison :D');
     }
 }

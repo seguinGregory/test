@@ -97,4 +97,19 @@ class Order
         $this->promotion = $promotion;
         return $this;
     }
+
+    /**
+     * Récupération du nombre total d'article dans la commande
+     * @return int
+     */
+    public function getProductQuantity(): int
+    {
+        $productQuantity = 0;
+
+        foreach($this->items AS $item) {
+            $productQuantity += $item->getQuantity();
+        }
+
+        return $productQuantity;
+    }
 }

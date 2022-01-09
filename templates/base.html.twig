@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Test Farmitoo{% endblock %}</title>
-    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
-</head>
-<body>
-{% block body %}
-    {% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+                Test Farmitoo
+            {% endblock %}
+        </title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+    {% block body %}
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('build/farmitoo_logo.svg') }}" alt="" height="24" class="d-inline-block align-text-top">
+                </a>
+                {{ title }}
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
     {% endblock %}
-{% endblock %}
-{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
-</body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    </body>
 </html>

@@ -2,19 +2,22 @@
 
 namespace App\Entity\Vat;
 
-class FixedVat implements VatInterface
+class Vat implements VatInterface
 {
     /** @var float */
     protected $rate;
 
     /**
-     * @param float $price
+     * @param float $rate
      */
-    public function __construct(float $price)
+    public function __construct(float $rate)
     {
-        $this->rate = $price;
+        $this->rate = $rate;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getVatRate(): float
     {
         return $this->rate;

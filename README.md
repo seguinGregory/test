@@ -2,6 +2,20 @@
 
 Ceci est le repository pour le test technique de Farmitoo.
 
+
+## Ma solution
+
+#### Installation
+`composer install`
+
+`npm install`
+
+`npm run build`
+
+### Conception
+
+
+
 ## Le cas
 
 L'objectif est d'afficher une page "panier" sur laquelle sont visibles :

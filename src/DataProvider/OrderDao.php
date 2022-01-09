@@ -4,16 +4,19 @@ namespace App\DataProvider;
 
 use App\Entity\Brand;
 use App\Entity\Item;
-use App\Entity\Product;
 use App\Entity\Order;
-use App\Entity\Promotion;
-use App\Entity\ShippingFee\FixedShippingFee;
+use App\Entity\Product;
 use App\Entity\ShippingFee\PackagedShippingFee;
-use App\Entity\Vat\FixedVat;
+use App\Entity\ShippingFee\ShippingFee;
+use App\Entity\Vat\Vat;
 
+/**
+ * Récupération des données (en dur ici mais possiblement depuis API ou BDD)
+ */
 class OrderDao
 {
     /**
+     * Récupération de l'order en cours
      * @return Order
      */
     public function getCurrentOrder(): Order
@@ -25,13 +28,13 @@ class OrderDao
 
         $farmitoo = new Brand(
             'Farmitoo',
-            new PackagedShippingFee(3, 20.0),
-            new FixedVat(20.0)
+            new PackagedShippingFee(20.0, 3),
+            new Vat(20.0)
         );
         $gallagher = new Brand(
             'Gallagher',
-            new FixedShippingFee(15.0),
-            new FixedVat(5.0)
+            new ShippingFee(15.0),
+            new Vat(5.0)
         );
 
         $product1 = new Product('Cuve à gasoil', 250000.0, $farmitoo);

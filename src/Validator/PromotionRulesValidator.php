@@ -3,9 +3,11 @@
 namespace App\Validator;
 
 use App\Entity\Order;
-use App\Entity\Promotion;
 use App\Exception\PromotionValidationRuleException;
 
+/**
+ * Service de validation d'une promotion via ses Rules
+ */
 class PromotionRulesValidator
 {
     /**
