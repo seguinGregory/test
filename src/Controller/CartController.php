@@ -41,7 +41,7 @@ class CartController extends AbstractController
 
 
         return $this->render('cart/details.html.twig', [
-            'title' => 'Votre panier',
+            'title' => 'Votre panier : ' . count($order->getItems()) . ' produit(s)',
             'order' => $order,
             'priceCalculator' => $priceCalculator,
             'shippingFeeCalculator' => $shippingFeeCalculator,
