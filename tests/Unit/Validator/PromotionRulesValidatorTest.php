@@ -44,22 +44,22 @@ class PromotionRulesValidatorTest extends TestCase
     {
         return [
             'OK utilisable' => [
-                'order' => (new Order([], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, [])),
+                'order' => (new Order([], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, [])),
                 'expectedException' => null,
                 'expectedExceptionMessage' => null
             ],
             'KO plus d\'utilisation' => [
-                'order' => (new Order([], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 0, [])),
+                'order' => (new Order([], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 0, [])),
                 'expectedException' => PromotionValidationRuleException::class,
                 'expectedExceptionMessage' => 'Cette promotion n\'est plus utilisable'
             ],
             'OK nombre d\'article minimal' => [
-                'order' => (new Order([], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, [new Promotion\MinimumItemsQuantityValidationRule('ERR01', 'test', 0)])),
+                'order' => (new Order([], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, [new Promotion\MinimumItemsQuantityValidationRule('ERR01', 'test', 0)])),
                 'expectedException' => null,
                 'expectedExceptionMessage' => null
             ],
             'KO nombre d\'article minimal' => [
-                'order' => (new Order([], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, [new Promotion\MinimumItemsQuantityValidationRule('ERR01', 'test', 1)])),
+                'order' => (new Order([], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, [new Promotion\MinimumItemsQuantityValidationRule('ERR01', 'test', 1)])),
                 'expectedException' => PromotionValidationRuleException::class,
                 'expectedExceptionMessage' => 'test'
             ]

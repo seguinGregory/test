@@ -2,6 +2,8 @@
 
 namespace App\Entity\ShippingFee;
 
+use App\Exception\NegativeValueException;
+
 class ShippingFee implements ShippingFeeInterface
 {
     /** @var float */
@@ -9,9 +11,14 @@ class ShippingFee implements ShippingFeeInterface
 
     /**
      * @param float $price
+     * @throws NegativeValueException
      */
     public function __construct(float $price)
     {
+        if($price < 0.0) {
+            throw new NegativeValueException('Le prix ne peut être négatif');
+        }
+
         $this->basePrice = $price;
     }
 

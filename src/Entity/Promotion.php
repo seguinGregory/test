@@ -5,6 +5,8 @@ namespace App\Entity;
 
 
 use App\Entity\Promotion\ValidationRule;
+use App\Exception\InvalidRateException;
+use App\Exception\NegativeValueException;
 
 class Promotion
 {
@@ -28,10 +30,20 @@ class Promotion
      * @param float $reduction
      * @param bool $freeDelivery
      * @param int $remainingUses
-     * @param ValidationRule[] $validationRules
+     * @param array $validationRules
+     * @throws InvalidRateException
+     * @throws NegativeValueException
      */
     public function __construct(string $name, float $reduction, bool $freeDelivery, int $remainingUses, array $validationRules)
     {
+        if($reduction < 0.0 || $reduction > 100.0) {
+            throw new InvalidRateException('Le taux de réduction doit être compris entre 0 et 100');
+        }
+
+        if($remainingUses < 0.0) {
+            throw new NegativeValueException('La quantité d\'utilisation restante ne peut être négative');
+        }
+
         $this->name = $name;
         $this->reduction = $reduction;
         $this->freeDelivery = $freeDelivery;

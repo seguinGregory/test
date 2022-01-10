@@ -5,7 +5,9 @@ Ceci est le repository pour le test technique de Farmitoo.
 
 ## Ma solution
 Je n'ai pas implémenté de persistence des données, en espérant que ce ne soit pas requis. Je peux modifier si jamais c'est nécessaire.
-J'ai tenté de montrer ma vision des choses, il y a des petits plus qui peuvent être mise en place mais qui ne sont peut⁻etre pas nécessaire pour ce contexte (Symfony Translation, CI, DockerFile pour monter le projet directement en local)
+J'ai tenté de montrer ma vision des choses, il y a des petits plus qui peuvent être mise en place mais qui ne sont peut⁻etre pas nécessaire pour ce contexte (Symfony Translation, CI, DockerFile pour monter le projet directement en local). 
+
+J'ai ajouté un report de la couverture de test (tests/coverage.txt). A noter que j'aurais pu effecter des TU pour tester les Exception des constructeurs d'entité.
 
 #### Installation
 `composer install`

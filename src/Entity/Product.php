@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Brand;
+use App\Exception\NegativeValueException;
 
 class Product
 {
@@ -24,10 +25,15 @@ class Product
     /**
      * @param string $title
      * @param float $price
-     * @param Brand $brand
+     * @param \App\Entity\Brand $brand
+     * @throws NegativeValueException
      */
     public function __construct(string $title, float $price, Brand $brand)
     {
+        if($price < 0.0) {
+            throw new NegativeValueException('Le prix ne peut être négative');
+        }
+
         $this->title = $title;
         $this->price = $price;
         $this->brand = $brand;

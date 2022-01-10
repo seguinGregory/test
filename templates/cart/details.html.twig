@@ -34,7 +34,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Total TTC</th>
-                                        <td>{{ priceCalculator.getItemTotalPrice(item)|format_currency('EUR') }}</td>
+                                        <td>{{ priceCalculator.getItemTotalPrice(item, order.billingCountry)|format_currency('EUR') }}</td>
                                     </tr>
                                 </tbody>
                             </table>

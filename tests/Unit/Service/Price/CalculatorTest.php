@@ -63,7 +63,7 @@ class CalculatorTest extends TestCase
      */
     public function testGetItemTotalPrice(Item $item, float $expectedPrice): void
     {
-        $this->assertEquals($expectedPrice, $this->sut->getItemTotalPrice($item));
+        $this->assertEquals($expectedPrice, $this->sut->getItemTotalPrice($item, 'FRA'));
     }
 
     /**
@@ -97,7 +97,7 @@ class CalculatorTest extends TestCase
                 "order" => new Order([
                     new Item(new Product("test1", 10, new Brand('test1', $this->createMock(ShippingFee::class), new Vat(10))), 3),
                     new Item(new Product("test2", 10, new Brand('test1', $this->createMock(ShippingFee::class), new Vat(20))), 1)
-                ], new \DateTime()),
+                ], new \DateTime(), 'FRA'),
                 "expectedPrice" => 45
             ]
         ];
@@ -121,7 +121,7 @@ class CalculatorTest extends TestCase
                 "order" => new Order([
                     new Item(new Product("test1", 10, $this->createMock(Brand::class)), 3),
                     new Item(new Product("test2", 10, $this->createMock(Brand::class)), 1)
-                ], new \DateTime()),
+                ], new \DateTime(), 'FRA'),
                 "expectedPrice" => 40
             ]
         ];
@@ -147,7 +147,7 @@ class CalculatorTest extends TestCase
                 "order" => new Order([
                     new Item(new Product("test1", 10, $this->createMock(Brand::class)), 3),
                     new Item(new Product("test2", 10, $this->createMock(Brand::class)), 1)
-                ], new \DateTime()),
+                ], new \DateTime(), 'FRA'),
                 "shippingFeePrice" => 8,
                 "expectedPrice" => 48
             ],
@@ -155,7 +155,7 @@ class CalculatorTest extends TestCase
                 "order" => (new Order([
                     new Item(new Product("test1", 10, $this->createMock(Brand::class)), 3),
                     new Item(new Product("test2", 10, $this->createMock(Brand::class)), 1)
-                ], new \DateTime()))->setPromotion(new Promotion('test1', 10, false, 1, [])),
+                ], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, false, 1, [])),
                 "shippingFeePrice" => 8,
                 "expectedPrice" => 43.2
             ],
@@ -163,7 +163,7 @@ class CalculatorTest extends TestCase
                 "order" => (new Order([
                     new Item(new Product("test1", 10, $this->createMock(Brand::class)), 3),
                     new Item(new Product("test2", 10, $this->createMock(Brand::class)), 1)
-                ], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, [])),
+                ], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, [])),
                 "shippingFeePrice" => 0,
                 "expectedPrice" => 36
             ],

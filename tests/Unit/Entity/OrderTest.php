@@ -24,7 +24,7 @@ class OrderTest extends TestCase
         $this->sut = new Order([
             new Item(new Product("test1", 10, $this->createMock(Brand::class)), 3),
             new Item(new Product("test2", 10, $this->createMock(Brand::class)), 1)
-        ], new \DateTime());
+        ], new \DateTime(), 'FRA');
     }
 
     public function testGetProductQuantity(): void

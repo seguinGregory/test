@@ -41,15 +41,15 @@ class OrderDao
         $product2 = new Product('Nettoyant pour cuve', 5000.0, $farmitoo);
         $product3 = new Product('Piquet de clôture', 1000.50, $gallagher);
 
-        $currentOrder = new Order([
+        return new Order([
             new Item($product1, 1),
             new Item($product2, 3),
             new Item($product3, 5)
         ],
-        new \DateTime());
-
-        return $currentOrder;
+            new \DateTime(),
+            'FRA');
     }
+
     /**
      * @return Order
      */
@@ -82,15 +82,14 @@ class OrderDao
         $product4 = new Product('8R 410', 500000.00, $johnDeere);
         $product5 = new Product('Robot de traite', 15500.00, $lely);
 
-        $currentOrder = new Order([
+        return new Order([
             new Item($product1, 1),
             new Item($product2, 5),
             new Item($product3, 50),
             new Item($product4, 1),
             new Item($product5, 2)
         ],
-            new \DateTime());
-
-        return $currentOrder;
+            new \DateTime(),
+            'FRA');
     }
 }

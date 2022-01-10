@@ -58,28 +58,28 @@ class CalculatorTest extends TestCase
                 'order' => (new Order([
                     new Item(new Product("test1", 10, new Brand('test1', new ShippingFee(10), $this->createMock(Vat::class))), 3),
                     new Item(new Product("test2", 10, new Brand('test2', new ShippingFee(10), $this->createMock(Vat::class))), 1)
-                ], new \DateTime()))->setPromotion(new Promotion('test1', 10, false, 1, [])),
+                ], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, false, 1, [])),
                 'expectedPrice' => 20
             ],
             'OK frais de port fixe et offert' => [
                 'order' => (new Order([
                     new Item(new Product("test1", 10, new Brand('test1', new ShippingFee(10), $this->createMock(Vat::class))), 3),
                     new Item(new Product("test2", 10, new Brand('test2', new ShippingFee(10), $this->createMock(Vat::class))), 1)
-                ], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, [])),
+                ], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, [])),
                 'expectedPrice' => 0
             ],
             'OK frais de port fixe et packagé et non offert' => [
                 'order' => (new Order([
                     new Item(new Product("test1", 10, new Brand('test1', new ShippingFee(10), $this->createMock(Vat::class))), 3),
                     new Item(new Product("test2", 10, new Brand('test2', new PackagedShippingFee(10, 3), $this->createMock(Vat::class))), 5)
-                ], new \DateTime()))->setPromotion(new Promotion('test1', 10, false, 1, [])),
+                ], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, false, 1, [])),
                 'expectedPrice' => 30
             ],
             'OK frais de port fixe et packagé et offert' => [
                 'order' => (new Order([
                     new Item(new Product("test1", 10, new Brand('test1', new ShippingFee(10), $this->createMock(Vat::class))), 3),
                     new Item(new Product("test2", 10, new Brand('test2', new PackagedShippingFee(10, 3), $this->createMock(Vat::class))), 5)
-                ], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, [])),
+                ], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, [])),
                 'expectedPrice' => 0
             ]
         ];
@@ -104,9 +104,9 @@ class CalculatorTest extends TestCase
 
     public function testHasFreeShippingFee(): void
     {
-        $this->assertTrue($this->invokeMethod($this->sut, 'hasFreeShippingFee', [(new Order([], new \DateTime()))->setPromotion(new Promotion('test1', 10, true, 1, []))]));
+        $this->assertTrue($this->invokeMethod($this->sut, 'hasFreeShippingFee', [(new Order([], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, true, 1, []))]));
 
-        $this->assertFalse($this->invokeMethod($this->sut, 'hasFreeShippingFee', [(new Order([], new \DateTime()))->setPromotion(new Promotion('test1', 10, false, 1, []))]));
+        $this->assertFalse($this->invokeMethod($this->sut, 'hasFreeShippingFee', [(new Order([], new \DateTime(), 'FRA'))->setPromotion(new Promotion('test1', 10, false, 1, []))]));
     }
 
     public function testGetShippingFeeInfos(): void
@@ -122,7 +122,7 @@ class CalculatorTest extends TestCase
                 new Item(new Product("test1", 10, $brand1), 3),
                 new Item(new Product("test2", 10, $brand1), 5),
                 new Item(new Product("test2", 10, $brand2), 5)
-            ], new \DateTime()))])
+            ], new \DateTime(), 'FRA'))])
         );
     }
 }

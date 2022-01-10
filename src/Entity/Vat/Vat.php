@@ -2,6 +2,8 @@
 
 namespace App\Entity\Vat;
 
+use App\Exception\InvalidRateException;
+
 class Vat implements VatInterface
 {
     /** @var float */
@@ -9,16 +11,21 @@ class Vat implements VatInterface
 
     /**
      * @param float $rate
+     * @throws InvalidRateException
      */
     public function __construct(float $rate)
     {
+        if($rate < 0.0 || $rate > 100.0) {
+            throw new InvalidRateException('Le taux doit être compris entre 0 et 100');
+        }
+
         $this->rate = $rate;
     }
 
     /**
      * @inheritDoc
      */
-    public function getVatRate(): float
+    public function getVatRate(string $country = null): float
     {
         return $this->rate;
     }

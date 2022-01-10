@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use App\Entity\Product;
+use App\Exception\NegativeValueException;
 
 class Item
 {
@@ -19,6 +20,10 @@ class Item
      */
     public function __construct(Product $product, int $quantity)
     {
+        if($quantity < 0.0) {
+            throw new NegativeValueException('La quantité ne peut être négative');
+        }
+
         $this->product = $product;
         $this->quantity = $quantity;
     }

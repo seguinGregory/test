@@ -14,17 +14,22 @@ class Order
     /** @var \DateTime */
     protected $submissionDate;
 
+    /** @var string Format : Code Alpha3 */
+    protected $billingCountry;
+
     /** @var Promotion|null */
     protected $promotion;
 
     /**
      * @param Item[] $items
      * @param \DateTime $submissionDate
+     * @param string $billingCountry
      */
-    public function __construct(array $items, \DateTime $submissionDate)
+    public function __construct(array $items, \DateTime $submissionDate, string $billingCountry)
     {
         $this->items = $items;
         $this->submissionDate = $submissionDate;
+        $this->billingCountry = $billingCountry;
     }
 
     /**
@@ -80,6 +85,24 @@ class Order
     public function setSubmissionDate(\DateTime $submissionDate): Order
     {
         $this->submissionDate = $submissionDate;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBillingCountry(): string
+    {
+        return $this->billingCountry;
+    }
+
+    /**
+     * @param string $billingCountry
+     * @return Order
+     */
+    public function setBillingCountry(string $billingCountry): Order
+    {
+        $this->billingCountry = $billingCountry;
         return $this;
     }
 

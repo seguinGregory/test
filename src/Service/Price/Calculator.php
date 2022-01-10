@@ -63,7 +63,7 @@ class Calculator
         $totalPrice = 0.0;
 
         foreach($order->getItems() as $item) {
-            $totalPrice += $this->getItemTotalPrice($item);
+            $totalPrice += $this->getItemTotalPrice($item, $order->getBillingCountry());
         }
 
         return $totalPrice;
@@ -84,9 +84,9 @@ class Calculator
      * @param Item $item
      * @return float
      */
-    public function getItemTotalPrice(Item $item): float
+    public function getItemTotalPrice(Item $item, string $billingCountry): float
     {
-        return $this->applyVat($this->getItemVatFreeTotalPrice($item), $item->getProduct()->getBrand()->getVat()->getVatRate());
+        return $this->applyVat($this->getItemVatFreeTotalPrice($item), $item->getProduct()->getBrand()->getVat()->getVatRate($billingCountry));
     }
 
     /**
