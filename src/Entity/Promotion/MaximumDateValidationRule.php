@@ -4,7 +4,6 @@ namespace App\Entity\Promotion;
 
 use App\Entity\Order;
 use App\Exception\PromotionValidationRuleException;
-use Symfony\Component\Translation\TranslatableMessage;
 
 class MaximumDateValidationRule extends ValidationRule implements ValidationRuleInterface
 {

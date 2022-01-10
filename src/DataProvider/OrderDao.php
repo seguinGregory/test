@@ -18,6 +18,8 @@ class OrderDao
     /**
      * Récupération de l'order en cours
      * @return Order
+     * @throws \App\Exception\InvalidRateException
+     * @throws \App\Exception\NegativeValueException
      */
     public function getCurrentOrder(): Order
     {
@@ -52,6 +54,8 @@ class OrderDao
 
     /**
      * @return Order
+     * @throws \App\Exception\InvalidRateException
+     * @throws \App\Exception\NegativeValueException
      */
     public function getOtherOrder(): Order
     {

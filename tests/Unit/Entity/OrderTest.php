@@ -6,7 +6,6 @@ use App\Entity\Brand;
 use App\Entity\Item;
 use App\Entity\Order;
 use App\Entity\Product;
-use App\Service\Price\Calculator;
 use PHPUnit\Framework\TestCase;
 
 class OrderTest extends TestCase

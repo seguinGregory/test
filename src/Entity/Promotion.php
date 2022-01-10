@@ -13,7 +13,7 @@ class Promotion
     /** @var string */
     protected $name;
 
-    /** @var float */
+    /** @var float En % (float entre 0 et 1) */
     protected $reduction;
 
     /** @var bool */

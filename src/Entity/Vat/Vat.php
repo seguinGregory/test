@@ -6,7 +6,7 @@ use App\Exception\InvalidRateException;
 
 class Vat implements VatInterface
 {
-    /** @var float */
+    /** @var float En % (float entre 0 et 1) */
     protected $rate;
 
     /**

@@ -6,15 +6,16 @@ use App\Exception\InvalidRateException;
 
 class CountryVatRate
 {
-    /** @var string */
+    /** @var string format : Code Alpha3 */
     protected $country;
 
-    /** @var float */
+    /** @var float En % (float entre 0 et 1) */
     protected $rate;
 
     /**
      * @param string $country
      * @param float $rate
+     * @throws InvalidRateException
      */
     public function __construct(string $country, float $rate)
     {

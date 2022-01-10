@@ -8,7 +8,7 @@ Je n'ai pas implémenté de persistence des données, en espérant que ce ne soi
 
 Pour la prise ne compte du pays dans le calcul de la TVA, j'ai compris que le pays correspond au pays de réception. Il suffirait donc d'utiliser CountriesVat sur une marque pour indiquer le taux par pays. (en réalité je pense que le pays de réception ET celui d'envoi serait judicieux, il suffirait d'ajouter un attribut)
 
-J'ai ajouté un report de la couverture de test (tests/coverage.txt). A noter que j'aurais pu effecter des TU pour tester les Exception des constructeurs d'entité.
+J'ai ajouté un report de la couverture de test (tests/coverage.txt). A noter que j'aurais pu effecter des TU pour tester les Exception des constructeurs d'entité même si dans l'idéal ces validations devraient être dans des service "validators" qui portent cette responsabilité.
 
 J'ai tenté de montrer ma vision des choses, il y a des petits plus qui peuvent être mise en place mais qui ne sont peut⁻etre pas nécessaire pour ce contexte de test et qui demanderait un peu plus de temps (Symfony Translation, CI, DockerFile pour monter le projet directement en local).
 

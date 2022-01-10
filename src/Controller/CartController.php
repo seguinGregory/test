@@ -27,7 +27,7 @@ class CartController extends AbstractController
         $order = $orderDao->getCurrentOrder();
         //$order = $orderDao->getOtherOrder();
 
-        // Simulation : l'utilisateur entre un code promo
+        // Simulation : l'utilisateur entre un code promo existant
         $promotion = $promotionDao->getPromotionByName();
         $order->setPromotion($promotion);
 

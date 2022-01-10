@@ -11,7 +11,11 @@ class PromotionDao
 {
     /**
      * Simulation d'une recupération par code promo
+     *
+     * L'utilisation de key Symfony Translation serait mieux pour les messages d'erreur
      * @return Promotion
+     * @throws \App\Exception\InvalidRateException
+     * @throws \App\Exception\NegativeValueException
      */
     public function getPromotionByName(): Promotion
     {
