@@ -2,6 +2,8 @@
 
 namespace App\Entity\Vat;
 
+use App\Entity\Vat\CountryVatRate;
+
 class CountriesVat extends Vat implements VatInterface
 {
     /** @var CountryVatRate[] */
