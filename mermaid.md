@@ -1,4 +1,4 @@
-'''mermaid
+```mermaid
 
 sequenceDiagram
     participant User
@@ -25,4 +25,4 @@ sequenceDiagram
     Payment ->> Payment: Change status to Completed
     Payment ->> Application: Acknowledge
 
-'''
+```
