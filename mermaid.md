@@ -1,4 +1,5 @@
 '''mermaid
+
 sequenceDiagram
     participant User
     participant Application
@@ -23,4 +24,5 @@ sequenceDiagram
     Application ->> Payment: Mark as Completed
     Payment ->> Payment: Change status to Completed
     Payment ->> Application: Acknowledge
+
 '''
